@@ -29,12 +29,8 @@ from scipy.stats import ttest_ind
 
 
 #Creación de conjunto muestra
-#df_sample = df_clean.sample(n = 100, random_state = 101)
 df_sample = df_clean.drop(columns = ['id', 'nametype', 'recclass', 'fall', 'year', 'reclong', 'GeoLocation']) #Se eliminan columnas redundantes
 
-print(df_sample)
-
-#Divisón de conjunto muestra en categorías
 sample_north = df_sample[df_sample.reclat >= 0] #Meteoritos en Hemisferio Norte
 sample_south = df_sample[df_sample.reclat < 0] #Meteoritos en Hemisferio Sur
 
@@ -48,12 +44,6 @@ print("----------------------------------------------NORTH----------------------
 print(sample_north)
 print("----------------------------------------------SOUTH----------------------------------------------")
 print(sample_south)
-
-#Creación de distribución t
-#rv = t(df = 100 - 2)
-
-#Hipótesis alternativa
-#print(sample_north['mass'].mean() - sample_south['mass'].mean() > 0)
 
 #Prueba t de dos muestras, unilateral
 t_stat, p_value = ttest_ind(sample_north, sample_south)
